@@ -73,8 +73,12 @@ def install_system_deps():
 
 
 def install_libs():
+    #
     os.system(
-        "pip install customtkinter screeninfo playsound --break-system-packages > /dev/null 2>&1"
+        "pip install --upgrade pip setuptools wheel --break-system-packages > /dev/null 2>&1"
+    )
+    os.system(
+        "pip install customtkinter screeninfo playsound --only-binary=:all: --break-system-packages > /dev/null 2>&1 "
     )
     print("Libs: Done")
 
