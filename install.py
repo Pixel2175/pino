@@ -1,6 +1,5 @@
 import os
 
-
 def get_distro():
     if os.path.isfile("/etc/os-release"):
         with open("/etc/os-release") as f:
