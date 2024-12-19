@@ -52,7 +52,7 @@ def install_pip():
 def install_system_deps():
     if distro in ["ubuntu", "debian"]:
         os.system("sudo apt-get update > /dev/null 2>&1")
-        os.system("sudo apt-get install -y tk > /dev/null 2>&1")
+        os.system("sudo apt-get install -y tk python3-tk > /dev/null 2>&1")
         print("Dependencies: Done")
     elif distro == "fedora":
         os.system("sudo dnf install -y tk > /dev/null 2>&1")
@@ -65,7 +65,7 @@ def install_system_deps():
         os.system("sudo pacman -S --noconfirm tk > /dev/null 2>&1")
         print("Dependencies: Done")
     elif distro == "void":
-        os.system("sudo xbps-install -y tk > /dev/null 2>&1")
+        os.system("sudo xbps-install -y tk python3-tkinter > /dev/null 2>&1")
         print("Dependencies: Done")
     else:
         print("Unsupported distribution. Please install system dependencies manually.")
