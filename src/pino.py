@@ -26,8 +26,10 @@ FUTURE:
 
 """
 
-from customtkinter import CTk, CTkFont, CTkFrame, CTkLabel
-from screeninfo import get_monitors
+from customtkinter.windows.widgets import CTkFrame, CTkLabel
+from customtkinter.windows.ctk_tk import CTk
+from customtkinter.windows.ctk_input_dialog import CTkFont
+from screeninfo.screeninfo import get_monitors
 from json import load
 from os.path import exists, expanduser
 from os import getlogin, system
@@ -36,15 +38,36 @@ from argparse import ArgumentParser
 # from playsound import playsound
 
 
-parsers = ArgumentParser(description="Enter Title and Massage that you want to show")
-parsers.add_argument("--title", metavar="", help="enter a string title")
-parsers.add_argument("--massage", metavar="", help="enter a string massage")
-parsers.add_argument(
-    "--config", metavar="", help="to use a special config file 'optional'"
+parsers = ArgumentParser(
+    description="""This tool lets you display notification with  customizable options. 
+you can also use a configuration file to set theme and everything easily (conf path = ~/.config/pino)"""
 )
+
+parsers.add_argument("--title", metavar="", help="set the notification title content")
+
+parsers.add_argument(
+    "--massage", metavar="", help="set the notification massage content"
+)
+
+
+parsers.add_argument(
+    "--opacity",
+    metavar="",
+    help="set the opacity level for the window (range: 0 to 100)",
+)
+
+parsers.add_argument(
+    "--delay", metavar="", help="set the delay before program closes with secends"
+)
+parsers.add_argument(
+    "--sound",
+    metavar="",
+    help="set a custom sound file to play with notificaitons ( enable it in config file if its not )",
+)
+parsers.add_argument("--config", metavar="", help="set a custom configuration file ")
+
+
 args = parsers.parse_args()
-
-
 pywal_conf = None
 conf = None
 config_folder = f"/home/{getlogin()}/.config/pino/"
@@ -64,6 +87,7 @@ else:
 
 if not exists(f"{config_folder}notification.mp3"):
     system(f"cp /etc/pino/notification.mp3 {config_folder} > /dev/null 2>&1")
+
 
 sx = get_monitors()[conf["screen"]["monitor"]].x
 sy = get_monitors()[conf["screen"]["monitor"]].y
@@ -177,14 +201,38 @@ if __name__ == "__main__":
         exit()
 
     root = Main()
-    root.after(30, lambda: root.attributes("-alpha", conf["screen"]["opacity"] / 100))
-    root.after(conf["screen"]["show"] * 1000, root.quit)
+    root.after(
+        30,
+        lambda: root.attributes(
+            "-alpha",
+            int(args.opacity) / 100
+            if args.opacity
+            else conf["screen"]["opacity"] / 100,
+        ),
+    )
+    root.after(
+        int(args.delay) * 1000 if args.delay else conf["screen"]["show"] * 1000,
+        root.quit,
+    )
 
     if conf["optional"]["sound"]:
         from threading import Thread
         from playsound import playsound
 
-        thread = Thread(target=lambda: playsound(f"{config_folder}notification.mp3"))
-        thread.start()
+        def start_sound(file):
+            return Thread(target=lambda: playsound(file))
 
-    root.mainloop()
+        thread = (
+            start_sound(str(args.sound))
+            if args.sound
+            else start_sound(f"{config_folder}notification.mp3")
+        )
+
+        try:
+            thread.start()
+        except KeyboardInterrupt:
+            exit()
+    try:
+        root.mainloop()
+    except KeyboardInterrupt:
+        exit()
