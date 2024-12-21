@@ -1,5 +1,9 @@
 import os
 
+os.system(
+    'sudo -k  > /dev/null 2>&1 && sudo -v -p "[*]- Please enter password: " > /dev/null 2>&1'
+)
+
 
 def get_distro():
     if os.path.isfile("/etc/os-release"):
