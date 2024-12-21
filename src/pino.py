@@ -13,11 +13,11 @@ REPORT:
 HOW TO USE IT:
   the app can handle 3 arguments:
     [1] --title   | will be set the string that u enter it to a title in the notification
-    [2] --massage | will be set the string that u enter it to a massage in the notification
+    [2] --message | will be set the string that u enter it to a message in the notification
     [3] --config  | this is a optional its use if you want to set a special config file for the first run
 
   command:
-    pino --title "enter you title" --massage "enter your massage" --config "enter a path for the config file that u want "
+    pino --title "enter you title" --message "enter your message" --config "enter a path for the config file that u want "
 
 
 
@@ -46,7 +46,7 @@ you can also use a configuration file to set theme and everything easily (conf p
 parsers.add_argument("--title", metavar="", help="set the notification title content")
 
 parsers.add_argument(
-    "--massage", metavar="", help="set the notification massage content"
+    "--message", metavar="", help="set the notification message content"
 )
 
 
@@ -105,7 +105,7 @@ H = conf["screen"]["horizontal"]
 frame_fg = ""
 border_color = ""
 title_color = ""
-massage_color = ""
+message_color = ""
 
 
 if conf["optional"]["pywal"]:
@@ -114,13 +114,13 @@ if conf["optional"]["pywal"]:
     border_color = pywal_conf["colors"]["color1"]
     frame_fg = pywal_conf["colors"]["color0"]
     title_color = pywal_conf["special"]["cursor"]
-    massage_color = pywal_conf["colors"]["color8"]
+    message_color = pywal_conf["colors"]["color8"]
 
 else:
     border_color = conf["frame"]["border"]["color"]
     frame_fg = conf["frame"]["fg_color"]
     title_color = conf["title"]["color"]
-    massage_color = conf["massage"]["color"]
+    message_color = conf["message"]["color"]
 
 
 def place():
@@ -174,29 +174,29 @@ class Main(CTk):
         )
         self.title.place(x=conf["title"]["x"], y=conf["title"]["y"])
 
-        self.massage = CTkLabel(
+        self.message = CTkLabel(
             self,
-            text=f"{args.massage} ",
+            text=f"{args.message} ",
             anchor="w",
             fg_color=frame_fg,
-            text_color=massage_color,
+            text_color=message_color,
             width=aw
             - int(conf["frame"]["border"]["width"])
-            - int(conf["massage"]["x"] + 2),
-            wraplength=(int(aw - conf["massage"]["x"]) - 20)
-            if (conf["massage"]["wrap_length"] == "auto")
-            else (int(conf["massage"]["wrap_length"]) - 20),
+            - int(conf["message"]["x"] + 2),
+            wraplength=(int(aw - conf["message"]["x"]) - 20)
+            if (conf["message"]["wrap_length"] == "auto")
+            else (int(conf["message"]["wrap_length"]) - 20),
             font=CTkFont(
                 conf["frame"]["font_family"],
-                conf["massage"]["font_size"],
-                conf["massage"]["weigth"],
+                conf["message"]["font_size"],
+                conf["message"]["weigth"],
             ),
         )
-        self.massage.place(x=conf["massage"]["x"], y=conf["massage"]["y"])
+        self.message.place(x=conf["message"]["x"], y=conf["message"]["y"])
 
 
 if __name__ == "__main__":
-    if args.massage == None or args.title == None:
+    if args.message == None or args.title == None:
         parsers.print_help()
         exit()
 
