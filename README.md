@@ -1,6 +1,6 @@
 # Pino: Pixel Notification
 
-Pino is a fully customizable notification tool that lets you display notifications with various options. It supports integration with Pywal to automatically match the notification theme to your wallpaper and includes customizable options for screen placement, fonts, and colors. You can also reach out to the developer via Discord: **pi66**.
+Pino is a fully customizable notification tool that lets you display notifications with various options. It supports integration with Pywal to automatically match the notification theme to your wallpaper and includes customizable options for screen placement, fonts, and colors. You can also catch me in Discord: **@pi66**.
 
 ---
 
@@ -44,7 +44,6 @@ Pino requires the following dependencies:
 - Python 3.6 or later
 - Libraries listed in `requirements.txt` (installed via `pip install -r requirements.txt`)
 - System tools: 
-  - `xclip` or `xsel` for clipboard integration
   - `notify-send` for notification handling on Linux
 - Optional: Pywal for dynamic theming
 
@@ -64,11 +63,11 @@ Options:
   --opacity          Set the opacity level for the window (range: 0 to 100)
   --delay            Set the delay before the program closes (in seconds)
   --sound            Set a custom sound file for notifications
-  --config           Set a custom configuration file
+  --config            Set a custom configuration file
 ```
 
 ### Example: Low Battery Alert
-You can create a script to notify about low battery status. Example in C:
+You can create a script to notify about [low battery status](https://github.com/Pixel2175/pino/blob/main/plugs/src/battery.c). Example in C:
 
 ```c
 #include <stdio.h>
@@ -152,10 +151,31 @@ Pino is lightweight and efficient. The graphical notification window typically u
 
 ---
 
-## Contributing
-Contributions are welcome! If you have ideas, feedback, or bug reports, contact me on Discord: **pi66**.
-
----
 
 ## License
-This project is licensed under an open license (add details if available).
+
+MIT License
+
+Copyright (c) 2024 Pixel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+The author's GitHub profile, https://github.com/Pixel2175, must be referenced
+in any usage or distribution of this software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
