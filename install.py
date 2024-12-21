@@ -86,7 +86,7 @@ def install_libs():
         print("[*]- Pip Upgraded Successfully !!")
     except OSError as e:
         print("[*]- Pip upgrade failed\ncheck pip_upgrade_error.txt for more info")
-        os.system(f"echo {e} > pip_upgrade_error.txt > /dev/null 2>&1")
+        os.system(f"echo {e} > pip_upgrade_error.txt")
 
     try:
         os.system(
@@ -95,7 +95,7 @@ def install_libs():
         print("[*]- Install libs successful !!")
     except OSError as e:
         print("[*]- Install libs failed !!\ncheck lib_install_error.txt for more info")
-        os.system(f"echo {e} > lib_install_error.txt > /dev/null 2>&1")
+        os.system(f"echo {e} > lib_install_error.txt")
 
 
 def copy_file():
@@ -110,7 +110,7 @@ def copy_file():
         os.system("rm pino > /dev/null 2>&1")
     except OSError as e:
         print("Installing app failed\ncheck app_install_error.txt file for more info")
-        os.system(f"echo {e} > app_install_error.txt > /dev/null 2>&1")
+        os.system(f"echo {e} > app_install_error.txt")
     try:
         os.system("sudo mkdir /etc/pino/ > /dev/null 2>&1")
         os.system("mkdir -p ~/.config/pino/plugs/ > /dev/null 2>&1")
@@ -121,7 +121,7 @@ def copy_file():
         print("\n[*]- Done")
     except OSError as e:
         print("Creating config files failed\ncheck config_error.txt for more info")
-        os.system(f"echo {e} > config_error.txt > /dev/null 2>&1")
+        os.system(f"echo {e} > config_error.txt")
 
 
 install_pip()
