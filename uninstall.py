@@ -1,5 +1,6 @@
 import os
 
+
 def get_distro():
     if os.path.isfile("/etc/os-release"):
         with open("/etc/os-release") as f:
@@ -50,8 +51,8 @@ def remove_files():
             "sudo rm -r /usr/bin/pino  /usr/bin/pino_start /etc/pino/ > /dev/null 2>&1"
         )
         os.system("rm -r ~/.config/pino/ ~/.config/pino/plugs/ > /dev/null 2>&1")
-        print("App Remove: Done")
-    except:
+        print("Remove App: Done")
+    except OSError:
         print("Faild remove")
 
 
