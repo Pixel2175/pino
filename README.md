@@ -1,6 +1,6 @@
 # Pino: Pixel Notification
 
-Pino is a fully customizable notification tool that lets you display notifications with various options. It supports integration with Pywal to automatically match the notification theme to your wallpaper and includes customizable options for screen placement, fonts, and colors. You can also catch me in Discord: **@pi66**.
+Pino is a fully customizable notification tool that lets you display notifications with various options. It supports integration with Pywal to automatically match the notification theme to your wallpaper and includes customizable options for screen placement, fonts, and colors. You can also catch me in Discord: **@pi66** .
 
 ---
 
@@ -14,7 +14,6 @@ Pino is a fully customizable notification tool that lets you display notificatio
 - [Dependencies](#dependencies)
 - [Hardware Usage](#hardware-usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -44,7 +43,7 @@ Pino requires the following dependencies:
 - Python 3.6 or later
 - Libraries listed in `requirements.txt` (installed via `pip install -r requirements.txt`)
 - System tools: 
-  - `notify-send` for notification handling on Linux
+  - `python-tk` GUI Toolkit
 - Optional: Pywal for dynamic theming
 
 ---
@@ -82,7 +81,7 @@ void pino(const char *title, const char *message) {
 }
 
 int main() {
-  pino("Low Battery", "Please plug in your charger!");
+  pino("Low Battery", "Please plug your charger in!");
   return 0;
 }
 ```
@@ -150,32 +149,3 @@ The app uses a JSON configuration file located at `~/.config/pino/config.json`. 
 Pino is lightweight and efficient. The graphical notification window typically uses approximately **30MB of RAM** when active, ensuring minimal system resource consumption.
 
 ---
-
-
-## License
-
-MIT License
-
-Copyright (c) 2024 Pixel
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-The author's GitHub profile, https://github.com/Pixel2175, must be referenced
-in any usage or distribution of this software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
