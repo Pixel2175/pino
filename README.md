@@ -13,7 +13,6 @@ Pino is a fully customizable notification tool that lets you display notificatio
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
 - [Hardware Usage](#hardware-usage)
-- [Contributing](#contributing)
 
 ---
 
