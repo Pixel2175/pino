@@ -116,8 +116,9 @@ def copy_file():
         os.system("mkdir -p ~/.config/pino/plugs/ > /dev/null 2>&1")
         os.system("cp ./plugs/* ~/.config/pino/plugs > /dev/null 2>&1")
         os.system(
-            "sudo cp ./src/config.json ./src/notification.mp3 /etc/pino/ > /dev/null 2>&1"
+            "sudo cp ./src/config.json ./src/notification.wav /etc/pino/ > /dev/null 2>&1"
         )
+        os.system("cp /etc/pino/* ~/.config/pino/")
         print("\n[*]- Done")
     except OSError as e:
         print("Creating config files failed\ncheck config_error.txt for more info")
