@@ -36,17 +36,12 @@ def remove_system_deps():
         os.system("sudo pacman -Rns --noconfirm tk > /dev/null 2>&1")
         print("Remove System Dep: Done")
     elif distro == "void":
-        os.system("sudo xbps-remove -R -y tk > /dev/null 2>&1")
+        os.system("sudo xbps-remove -R -y python3-tkinter tk > /dev/null 2>&1")
         print("Remove System Dep: Done")
     else:
         print("Unsupported distribution. Please install system dependencies manually.")
 
 
-def uninstall_libs():
-    os.system(
-    "pip uninstall -r requirements.txt  --yes --quiet --break-system-packages"
-    )
-    print("Remove Libs: Done")
 
 
 def remove_files():
@@ -61,5 +56,4 @@ def remove_files():
 
 
 remove_system_deps()
-uninstall_libs()
 remove_files()
