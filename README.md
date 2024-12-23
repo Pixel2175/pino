@@ -40,9 +40,12 @@ python install.py
 
 Pino requires the following dependencies:
 - Python 3.6 or later
-- Libraries preinstalled in folder [`lib`](https://github.com/Pixel2175/pino/tree/main/lib/lib/python3.13/site-packages)
+- Libraries preinstalled in folder [`lib`](https://github.com/Pixel2175/pino/tree/main/lib/lib/python3.13/site-packages) :
+  - [`customtkinter`](https://customtkinter.tomschimansky.com/) A GUI Framework based on Tkinter
+  - [`PyGame.Mixer`](https://www.pygame.org/docs/ref/mixer.html#pygame.mixer.Sound) PyGame Tweaked for sound
+  - [`screeninfo`](https://pypi.org/project/screeninfo/) lightweight lib to get size and place for the monitors
 - System tools: 
-  - `python-tk` GUI Toolkit
+  - [`python-tk`](https://docs.python.org/3/library/tkinter.html) GUI Toolkit
 - Optional: Pywal for dynamic theming
 
 ---
