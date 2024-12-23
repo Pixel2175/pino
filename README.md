@@ -40,7 +40,7 @@ python install.py
 
 Pino requires the following dependencies:
 - Python 3.6 or later
-- Libraries listed in `requirements.txt` (installed via `pip install -r requirements.txt`)
+- Libraries preinstalled in folder [`lib`](https://github.com/Pixel2175/pino/tree/main/lib/lib/python3.13/site-packages)
 - System tools: 
   - `python-tk` GUI Toolkit
 - Optional: Pywal for dynamic theming
