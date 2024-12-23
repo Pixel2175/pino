@@ -14,11 +14,9 @@ HOW TO USE IT:
   the app can handle 3 arguments:
     [1] --title   | will be set the string that u enter it to a title in the notification
     [2] --message | will be set the string that u enter it to a message in the notification
-    [3] --config  | this is a optional its use if you want to set a special config file for the first run
 
   command:
-    pino --title "enter you title" --message "enter your message" --config "enter a path for the config file that u want "
-
+    pino --title "enter you title" --message "enter your message"
 
 
 FUTURE:
@@ -85,8 +83,8 @@ else:
     with open(expanduser(args.config), "r") as file:
         conf = load(file)
 
-if not exists(f"{config_folder}notification.mp3"):
-    system(f"cp /etc/pino/notification.mp3 {config_folder} > /dev/null 2>&1")
+if not exists(f"{config_folder}notification.wav"):
+    system(f"cp /etc/pino/notification.wav {config_folder} > /dev/null 2>&1")
 
 
 sx = get_monitors()[conf["screen"]["monitor"]].x
@@ -108,13 +106,16 @@ title_color = ""
 message_color = ""
 
 
-if conf["optional"]["pywal"]:
-    with open(f"/home/{getlogin()}/.cache/wal/colors.json", "r") as file:
-        pywal_conf = load(file)
-    border_color = pywal_conf["colors"]["color1"]
-    frame_fg = pywal_conf["colors"]["color0"]
-    title_color = pywal_conf["special"]["cursor"]
-    message_color = pywal_conf["colors"]["color8"]
+if conf["optional"]["pywal"]  :
+    if exists(f"/home/{getlogin()}/.cache/wal/colors.json"):
+       with open(f"/home/{getlogin()}/.cache/wal/colors.json", "r") as file:
+           pywal_conf = load(file)
+       border_color = pywal_conf["colors"]["color1"]
+       frame_fg = pywal_conf["colors"]["color0"]
+       title_color = pywal_conf["special"]["cursor"]
+       message_color = pywal_conf["colors"]["color8"]
+    else:
+        print("[*]- Pywal is not installed !!")
 
 else:
     border_color = conf["frame"]["border"]["color"]
@@ -215,23 +216,28 @@ if __name__ == "__main__":
         root.quit,
     )
 
-    if conf["optional"]["sound"]:
-        from threading import Thread
-        from playsound import playsound
+    if conf["optional"]["sound"] :
+        def start_sound():
+            from threading import Thread
+            from os import environ
+            environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+            from pygame.mixer import init,Sound
+            init()
+     
+            thread = Thread(target=lambda: Sound(str(args.sound) if args.sound else f"{config_folder}notification.wav").play())
+            try:
+                thread.start()
+            except KeyboardInterrupt:
+                exit()
+  
+        if exists(f"{config_folder}notification.wav"):
+            start_sound()
+            pass
+        else:
+            print("[*]- sound file doasn't exist !!")
+            system(f"cp /etc/pino/notification.wav {config_folder}")
+            start_sound()
 
-        def start_sound(file):
-            return Thread(target=lambda: playsound(file))
-
-        thread = (
-            start_sound(str(args.sound))
-            if args.sound
-            else start_sound(f"{config_folder}notification.mp3")
-        )
-
-        try:
-            thread.start()
-        except KeyboardInterrupt:
-            exit()
     try:
         root.mainloop()
     except KeyboardInterrupt:
