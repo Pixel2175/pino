@@ -23,17 +23,26 @@ FUTURE:
 - possiblity to add icon
 
 """
+from sys import path
+from os.path import exists, expanduser
+from os import getlogin, system
 
+
+libs_path = "/etc/pino/lib/lib/python3.13/site-packages"
+if exists(libs_path):
+    path.insert(0,str(libs_path))
+else:
+    print("[*]- libs didn't found !!")
+
+from json import load
+
+from argparse import ArgumentParser
 from customtkinter.windows.widgets import CTkFrame, CTkLabel
 from customtkinter.windows.ctk_tk import CTk
 from customtkinter.windows.ctk_input_dialog import CTkFont
 from screeninfo.screeninfo import get_monitors
-from json import load
-from os.path import exists, expanduser
-from os import getlogin, system
-from argparse import ArgumentParser
 # from threading import Thread
-# from playsound import playsound
+# from pygame.mixer import Sound
 
 
 parsers = ArgumentParser(
