@@ -44,7 +44,7 @@ def remove_system_deps():
 
 def uninstall_libs():
     os.system(
-        "pip uninstall --yes customtkinter playsound screeninfo --break-system-packages > /dev/null 2>&1"
+    "pip uninstall -r requirements.txt  --yes --quiet --break-system-packages"
     )
     print("Remove Libs: Done")
 
