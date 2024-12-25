@@ -32,16 +32,16 @@ def remove_system_deps():
     elif distro in ["centos", "rhel"]:
         os.system("sudo yum remove  -y tk > /dev/null 2>&1")
         print("Remove System Dep: Done")
-    elif distro == "arch":
+    elif distro == "arch" or distro == "artix":
         os.system("sudo pacman -Rns --noconfirm tk > /dev/null 2>&1")
         print("Remove System Dep: Done")
     elif distro == "void":
         os.system("sudo xbps-remove -R -y python3-tkinter tk > /dev/null 2>&1")
         print("Remove System Dep: Done")
     else:
-        print("Unsupported distribution. Please install system dependencies manually.")
-
-
+        print(
+            "Unsupported distribution. Please uninstall system dependencies manually."
+        )
 
 
 def remove_files():

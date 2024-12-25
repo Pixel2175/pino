@@ -38,7 +38,7 @@ def install_system_deps():
     elif distro in ["centos", "rhel"]:
         os.system("sudo yum install -y python3 tk > /dev/null 2>&1")
         print("[*]- Dependencies: Done")
-    elif distro == "arch":
+    elif distro == "arch" or distro == "artix":
         os.system("sudo pacman -S --noconfirm python3 tk > /dev/null 2>&1")
         print("[*]- Dependencies: Done")
     elif distro == "void":
@@ -50,6 +50,7 @@ def install_system_deps():
         print(
             "[*]- Unsupported distribution. Please install system dependencies manually.\n  [*]- dependencies:\n\t-python\n\t-tk\n\t-python-tkinter "
         )
+
 
 def copy_file():
     try:
@@ -63,7 +64,9 @@ def copy_file():
 
         if not os.path.exists("/etc/pino"):
             os.system("sudo mkdir /etc/pino")
-        os.system(f"sudo chown -R {os.getlogin()}:{grp.getgrgid(os.getgid()).gr_name} /etc/pino/ > /dev/null 2>&1")
+        os.system(
+            f"sudo chown -R {os.getlogin()}:{grp.getgrgid(os.getgid()).gr_name} /etc/pino/ > /dev/null 2>&1"
+        )
         os.system("sudo cp -r lib /etc/pino > /dev/null 2>&1")
     except OSError as e:
         print("Installing app failed\ncheck app_install_error.txt file for more info")
@@ -73,13 +76,14 @@ def copy_file():
         if not os.path.exists("~/.config/pino"):
             os.makedirs(os.path.expanduser("~/.config/pino/plugs/"), exist_ok=True)
         os.system("cp ./plugs/* ~/.config/pino/plugs/ > /dev/null 2>&1")
-        os.system("sudo cp ./src/config.json ./src/notification.wav /etc/pino/ > /dev/null 2>&1")
+        os.system(
+            "sudo cp ./src/config.json ./src/notification.wav /etc/pino/ > /dev/null 2>&1"
+        )
         os.system("cp /etc/pino/* ~/.config/pino/ > /dev/null 2>&1")
         print("\n[*]- Done")
     except OSError as e:
         print("Creating config files failed\ncheck config_error.txt for more info")
         os.system(f"echo {e} > config_error.txt")
-
 
 
 install_system_deps()
